@@ -49,8 +49,8 @@ export default function App() {
         pendingTasks.push(() =>
           step({
             start: end,
-            length: b.length,
-            theta: b.theta - 0.2
+            length: b.length + (Math.random() * 10 - 5),
+            theta: b.theta - 0.3 * Math.random()
           })
         )
       }
@@ -59,8 +59,8 @@ export default function App() {
         pendingTasks.push(() =>
           step({
             start: end,
-            length: b.length,
-            theta: b.theta + 0.2
+            length: b.length + (Math.random() * 10 - 5),
+            theta: b.theta + 0.3 * Math.random()
           })
         )
       }
