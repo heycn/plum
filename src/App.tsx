@@ -39,24 +39,30 @@ export default function App() {
       lineTo(b.start, getEndPoint(b))
     }
 
+    const pendingTasks: Function[] = []
+
     const step = (b: Branch) => {
       const end = getEndPoint(b)
       drawBranch(b)
 
       if (Math.random() < 0.5) {
-        step({
-          start: end,
-          length: b.length,
-          theta: b.theta - 0.2
-        })
+        pendingTasks.push(() =>
+          step({
+            start: end,
+            length: b.length,
+            theta: b.theta - 0.2
+          })
+        )
       }
 
       if (Math.random() < 0.5) {
-        step({
-          start: end,
-          length: b.length,
-          theta: b.theta + 0.2
-        })
+        pendingTasks.push(() =>
+          step({
+            start: end,
+            length: b.length,
+            theta: b.theta + 0.2
+          })
+        )
       }
     }
 
@@ -65,6 +71,21 @@ export default function App() {
       length: 40,
       theta: -Math.PI / 2
     })
+
+    const frame = () => {
+      const tasks = [...pendingTasks]
+      pendingTasks.length = 0
+      tasks.forEach(fn => fn())
+    }
+
+    const startFrame = () => {
+      requestAnimationFrame(() => {
+        frame()
+        startFrame()
+      })
+    }
+
+    startFrame()
   }
 
   useEffect(() => {
