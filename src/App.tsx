@@ -13,7 +13,7 @@ export default function App() {
   interface Branch {
     start: Point
     length: number
-    theta: number // 夹角角度
+    theta: number
   }
 
   const init = () => {
