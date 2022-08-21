@@ -78,9 +78,11 @@ export default function App() {
       tasks.forEach(fn => fn())
     }
 
+    let framesCount = 0
     const startFrame = () => {
       requestAnimationFrame(() => {
-        frame()
+        framesCount++
+        framesCount % 3 === 0 && frame()
         startFrame()
       })
     }
