@@ -41,27 +41,33 @@ export default function App() {
 
     const pendingTasks: Function[] = []
 
-    const step = (b: Branch) => {
+    const step = (b: Branch, depth = 0) => {
       const end = getEndPoint(b)
       drawBranch(b)
 
-      if (Math.random() < 0.5) {
+      if (depth < 2 || Math.random() < 0.5) {
         pendingTasks.push(() =>
-          step({
-            start: end,
-            length: b.length + (Math.random() * 10 - 5),
-            theta: b.theta - 0.3 * Math.random()
-          })
+          step(
+            {
+              start: end,
+              length: b.length + (Math.random() * 10 - 5),
+              theta: b.theta - 0.3 * Math.random()
+            },
+            depth + 1
+          )
         )
       }
 
-      if (Math.random() < 0.5) {
+      if (depth < 2 || Math.random() < 0.5) {
         pendingTasks.push(() =>
-          step({
-            start: end,
-            length: b.length + (Math.random() * 10 - 5),
-            theta: b.theta + 0.3 * Math.random()
-          })
+          step(
+            {
+              start: end,
+              length: b.length + (Math.random() * 10 - 5),
+              theta: b.theta + 0.3 * Math.random()
+            },
+            depth + 1
+          )
         )
       }
     }
