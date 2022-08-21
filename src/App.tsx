@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react'
 
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const WIDTH = 600
-  const HEIGHT = 600
+  const WIDTH = 400
+  const HEIGHT = 400
 
   interface Point {
     x: number
@@ -19,7 +19,7 @@ export default function App() {
   const init = () => {
     const canvas = canvasRef.current
     const ctx = canvas!.getContext('2d')
-    ctx!.strokeStyle = 'rgba(55, 65, 81, .25)'
+    ctx!.strokeStyle = 'rgba(55, 65, 81, .3)'
 
     const lineTo = (p1: Point, p2: Point) => {
       ctx!.beginPath()
@@ -74,7 +74,7 @@ export default function App() {
 
     step({
       start: { x: WIDTH / 2, y: HEIGHT },
-      length: 40,
+      length: 10,
       theta: -Math.PI / 2
     })
 
@@ -104,8 +104,8 @@ export default function App() {
     <>
       <canvas
         ref={canvasRef}
-        width='600'
-        height='600'
+        width='400'
+        height='400'
         style={{ border: '1px solid' }}
       />
     </>
