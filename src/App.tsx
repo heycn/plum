@@ -45,12 +45,12 @@ export default function App() {
       const end = getEndPoint(b)
       drawBranch(b)
 
-      if (depth < 2 || Math.random() < 0.5) {
+      if (depth < 4 || Math.random() < 0.5) {
         pendingTasks.push(() =>
           step(
             {
               start: end,
-              length: b.length + (Math.random() * 10 - 5),
+              length: b.length + Math.random() * 3 - 1,
               theta: b.theta - 0.3 * Math.random()
             },
             depth + 1
@@ -58,12 +58,12 @@ export default function App() {
         )
       }
 
-      if (depth < 2 || Math.random() < 0.5) {
+      if (depth < 4 || Math.random() < 0.5) {
         pendingTasks.push(() =>
           step(
             {
               start: end,
-              length: b.length + (Math.random() * 10 - 5),
+              length: b.length + Math.random() * 3 - 1,
               theta: b.theta + 0.3 * Math.random()
             },
             depth + 1
@@ -88,7 +88,7 @@ export default function App() {
     const startFrame = () => {
       requestAnimationFrame(() => {
         framesCount++
-        framesCount % 3 === 0 && frame()
+        framesCount % 2 === 0 && frame()
         startFrame()
       })
     }
