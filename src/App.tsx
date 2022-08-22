@@ -107,6 +107,7 @@ export default function App() {
         width='400'
         height='400'
         style={{ border: '1px solid' }}
+        onClick={init}
       />
     </>
   )
