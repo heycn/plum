@@ -73,7 +73,7 @@ export default function App() {
     }
 
     step({
-      start: { x: WIDTH / 2, y: HEIGHT },
+      start: { x: WIDTH * Math.random(), y: HEIGHT },
       length: 10,
       theta: -Math.PI / 2
     })
