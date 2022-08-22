@@ -9,3 +9,7 @@ body {
   place-items: center;
   min-height: 100vh;
 }
+
+canvas {
+  cursor: pointer;
+}
